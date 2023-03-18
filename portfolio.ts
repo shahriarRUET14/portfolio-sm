@@ -43,9 +43,16 @@ export const skillsSection: SkillsSectionType = {
       lottieAnimationFile: '/lottie/skills/fullstack.json', // Path of Lottie Animation JSON File
       skills: [
         emoji(
-          '⚡ Building responsive Single-Page-Apps (SPA) & PWA in React.js'
+          '⚛️ Building responsive Single-Page-Apps (SPA) in React.js,NextJS'
         ),
-        emoji('⚡ Building responsive static websites using Next.js'),
+        emoji('💻 Design and develop the UI of websites and web applications'),
+        emoji('🤝 Collaborate with stakeholders & Maintain documentation'),
+        emoji(
+          '🔗 Integrate APIs and libraries & 🌐 Test cross-browser compatibility'
+        ),
+        emoji('📱 Create responsive designs & ♿ Ensure web accessibility'),
+        emoji('🚀 Optimize performance &  Provide ongoing support/maintenance'),
+        emoji('📈 Stay up to date with trends'),
       ],
       softwareSkills: [
         {
@@ -83,7 +90,30 @@ export const skillsSection: SkillsSectionType = {
       title: 'Backend Web Development',
       lottieAnimationFile: '/lottie/skills/cloudinfra.json', // Path of Lottie Animation JSON File
       skills: [
-        emoji('⚡ Building RESTful APIs in Django & Django REST Framework'),
+        emoji(
+          '🤝 Design and develop APIs to support client-side functionality'
+        ),
+        emoji(
+          '💻 Write server-side code in a programming language such as  Java(Spring Boot), JS(Nodejs) PHP(Laravel) to support application functionality'
+        ),
+        emoji(
+          '🗃️ Manage and maintain databases, including backups, migrations, and data integrity'
+        ),
+        emoji(
+          '🚀 Optimize database performance and scalability through indexing, caching, and other techniques'
+        ),
+        emoji(
+          '🔒 Implement data security and privacy measures, such as encryption and access control'
+        ),
+        emoji(
+          '🐛 Debug and troubleshoot issues related to server-side code or database'
+        ),
+        emoji(
+          '👥 Collaborate with front-end developers to ensure efficient data exchange between the client and server'
+        ),
+        emoji(
+          '📝 Write and maintain technical documentation for server-side code and APIs'
+        ),
       ],
       softwareSkills: [
         // ? Check README To get icon details
@@ -122,16 +152,16 @@ export const skillsSection: SkillsSectionType = {
 
 export const SkillBars: SkillBarsType[] = [
   {
-    Stack: 'Frontend/Design', //Insert stack or technology you have experience in
-    progressPercentage: '90', //Insert relative proficiency in percentage
+    Stack: 'Frontend', //Insert stack or technology you have experience in
+    progressPercentage: '80', //Insert relative proficiency in percentage
   },
   {
     Stack: 'Backend',
-    progressPercentage: '70',
+    progressPercentage: '65',
   },
   {
     Stack: 'Programming',
-    progressPercentage: '60',
+    progressPercentage: '70',
   },
 ];
 
@@ -140,33 +170,39 @@ export const educationInfo: EducationType[] = [
     schoolName: 'Rajshahi University of Engineering Technology',
     subHeader: 'Bachelor in Computer Science and Engineering',
     duration: 'January 2015 - February 2020',
-    desc: 'Participated in the research of XXX and published 3 papers.',
+    desc: 'Reasearch on Analysis of Cryptography Algorithms for Data Security on Cloud.',
     grade: 'GPA 2.88 Out of 4.00',
     descBullets: [
-      'Lorem ipsum dolor sit amet, consectetur adipdfgiscing elit',
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+      'Conduct a comprehensive analysis of encryption algorithms and develop a data security model that utilizes advanced techniques such as access control and encryption to protect against unauthorized access and analysis by third parties.',
+      'Learned Programming ethics and almost every basic idea of study in CSE',
     ],
   },
 ];
 
 export const experience: ExperienceType[] = [
   {
-    role: 'Frontend Developer',
-    company: 'Duseca Software',
-    companyLogo: '/img/icons/common/dusecaSoftware.jpg',
-    date: 'Apr 2022 – Jun 2022',
+    role: 'Full Stack Developer',
+    company: 'Red.Digital Limited',
+    companyLogo: '/img/icons/common/RedDot.png',
+    date: 'Jul 2022 –  Working',
     desc: 'I worked as frontend web developer to design web based admin dashboards for mulitple apps using Django, Bootstrap, jQuery, Chart.js and some other libraries.',
+    descBullets: [
+      'VAS_CP: Laravel Project for connecting Content Provider to VAS team. (My Role Full Stack Developer)',
+      'SHOPOTH: FrontEnd Developer for this eCommerce sites and its all of admin pannels',
+    ],
   },
   {
-    role: 'Backend Developer',
+    role: 'Full Stack Developer',
     company: 'TOGETHER INITIATIVES LTD.',
     companyLogo: '/img/icons/common/i2Gether_logo.png',
-    date: 'Jan 2022 – Mar 2022',
-    desc: 'I worked as API Engineer on a Kale App. Kale is a community platform for the creation of social reviews based on verified transactions. I built Fully Optimized and High Performance RESTful APIs using Django, DjangoRESTFramework, PostgresSQL, JWT Authentication, AWS, Integrated Plaid APIs for Fetching Bank Transactions, Integrated Sentry for monitoring Django Server and deployed the API on Heroku Server.',
-    // descBullets: [
-    // 	"Lorem ipsum dolor sit amet, consdfgectetur adipiscing elit",
-    // 	"Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-    // ],
+    date: 'Mar 2020 – Jun 2022',
+    desc: 'My time at I2Gether was awesome. I not only learned a lot about software development but also gained valuable experience in IT culture and discipline.',
+    descBullets: [
+      'Joined as Process Developer at Processmaker, a BPMN solution.',
+      'Worked as a FullStack developer using Springboot, MYSQL, and Reactjs for a Point Of Sale application.',
+      "Developed Middleware API's for a national Secure application using Java.",
+      'Worked on Bank Reconciliation as a FullStack developer using PHP, HTML, and Bootstrap.',
+    ],
   },
 ];
 
@@ -174,8 +210,8 @@ export const projects: ProjectType[] = [
   {
     name: 'developer-portfolio',
     desc: 'Software Developer Portfolio Template built with react.js and next.js bootstrap that helps you showcase your work and skills as a software developer.',
-    github: 'https://github.com/1hanzla100/developer-portfolio',
-    link: 'https://developer-portfolio-1hanzla100.vercel.app/',
+    github: 'https://github.com/shahriarRUET14/portfolio-sm',
+    link: 'https://portfolio-sm-ten.vercel.app/',
   },
   {
     name: 'AtlasMart',

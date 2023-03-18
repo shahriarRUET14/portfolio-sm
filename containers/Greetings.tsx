@@ -76,7 +76,7 @@ const Greetings = ({ avatar_url, bio, location }: GithubUserType) => {
                   </Fade>
                 </Col>
                 <Col lg="6">
-                  <GreetingLottie animationPath="/lottie/coding.json" />
+                  <GreetingLottie animationPath="/lottie/skills/64110-web-development.json" />
                 </Col>
               </Row>
             </div>

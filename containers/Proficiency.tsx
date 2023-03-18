@@ -24,7 +24,7 @@ const Proficiency = () => {
                     <Progress
                       max="100"
                       value={skill.progressPercentage}
-                      color="info"
+                      color="succes"
                       role="progressbar"
                       aria-label={skill.Stack}
                     />
@@ -33,7 +33,7 @@ const Proficiency = () => {
               })}
             </Col>
             <Col lg="6">
-              <GreetingLottie animationPath="/lottie/build.json" />
+              <GreetingLottie animationPath="/lottie/96415-delivery-excellence.json" />
             </Col>
           </Row>
         </Fade>
