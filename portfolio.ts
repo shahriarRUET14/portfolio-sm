@@ -213,21 +213,21 @@ export const projects: ProjectType[] = [
     github: 'https://github.com/shahriarRUET14/portfolio-sm',
     link: 'https://portfolio-sm-ten.vercel.app/',
   },
-  {
-    name: 'AtlasMart',
-    desc: 'With Atlas Mart, it’s easy to find the products with the best price and ship them straight to your door.',
-    github: 'https://github.com/1hanzla100/Django-React-Marketplace',
-  },
-  {
-    name: 'Technota (Forum)',
-    desc: 'Get hands-on experience in technical skills with Technota',
-    github: 'https://github.com/1hanzla100/django-react-forum',
-  },
-  {
-    name: 'Shopaza (Ecommerce)',
-    desc: 'Now your reach to all your favorite entertainment and luxury items is just one touch apart',
-    github: 'https://github.com/1hanzla100/Django-ecommerce',
-  },
+  // {
+  //   name: 'AtlasMart',
+  //   desc: 'With Atlas Mart, it’s easy to find the products with the best price and ship them straight to your door.',
+  //   github: 'https://github.com/1hanzla100/Django-React-Marketplace',
+  // },
+  // {
+  //   name: 'Technota (Forum)',
+  //   desc: 'Get hands-on experience in technical skills with Technota',
+  //   github: 'https://github.com/1hanzla100/django-react-forum',
+  // },
+  // {
+  //   name: 'Shopaza (Ecommerce)',
+  //   desc: 'Now your reach to all your favorite entertainment and luxury items is just one touch apart',
+  //   github: 'https://github.com/1hanzla100/Django-ecommerce',
+  // },
 ];
 
 export const feedbacks: FeedbackType[] = [

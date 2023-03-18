@@ -29,7 +29,7 @@ export default function Home({
       <Proficiency />
       <Education />
       <Experience />
-      <Feedbacks />
+      {/* <Feedbacks /> */}
       <Projects />
       {showContactUs ? <Contact /> : null}
       <GithubProfileCard {...githubProfileData} />
