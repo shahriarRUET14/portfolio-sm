@@ -12,6 +12,7 @@ import {
   Row,
   Col,
 } from 'reactstrap';
+import SocialLinks from './SocialLinks';
 
 const Navigation = () => {
   const [collapseClasses, setCollapseClasses] = useState('');
@@ -29,16 +30,17 @@ const Navigation = () => {
     <>
       <header className="header-global">
         <Navbar
-          className="navbar-main navbar-transparent navbar-light headroom"
+          className="navbar-main  shadow-xl navbar-transparent navbar-light headroom"
           expand="lg"
           id="navbar-main"
         >
           <Container>
             <NavbarBrand href="/" className="mr-lg-5">
-              <h2 className="text-white" id="nav-title">
+              <h2 className="fw-bold" id="nav-title">
                 {greetings.name}
               </h2>
             </NavbarBrand>
+
             <button
               className="navbar-toggler"
               aria-label="navbar_toggle"
@@ -69,7 +71,9 @@ const Navigation = () => {
                 </Row>
               </div>
               <Nav className="align-items-lg-center ml-lg-auto" navbar>
-                {socialLinks.facebook && (
+                <SocialLinks />
+
+                {/* {socialLinks.facebook && (
                   <NavItem>
                     <NavLink
                       rel="noopener"
@@ -148,7 +152,7 @@ const Navigation = () => {
                       </span>
                     </NavLink>
                   </NavItem>
-                )}
+                )} */}
               </Nav>
             </UncontrolledCollapse>
           </Container>

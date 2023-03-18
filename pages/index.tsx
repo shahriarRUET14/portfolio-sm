@@ -24,7 +24,7 @@ export default function Home({
     <div>
       <SEO />
       <Navigation />
-      <Greetings />
+      <Greetings {...githubProfileData} />
       <Skills />
       <Proficiency />
       <Education />

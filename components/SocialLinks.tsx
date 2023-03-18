@@ -75,20 +75,6 @@ const SocialLinks = () => {
           </span>
         </Button>
       )}
-      {socialLinks.twitter && (
-        <Button
-          className="btn-icon-only rounded-circle"
-          color="twitter"
-          href={socialLinks.twitter}
-          target="_blank"
-          rel="noopener"
-          aria-label="Twitter"
-        >
-          <span className="btn-inner--icon">
-            <i className="fa fa-twitter" />
-          </span>
-        </Button>
-      )}
     </div>
   );
 };

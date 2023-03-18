@@ -1,10 +1,22 @@
 import React, { useEffect } from 'react';
 import { greetings } from '../portfolio';
-import { Button, Container, Row, Col } from 'reactstrap';
+import { GithubUserType } from '../types';
+
+import {
+  Button,
+  Container,
+  Row,
+  Col,
+  Card,
+  Fade,
+  CardBody,
+  Badge,
+  CardTitle,
+} from 'reactstrap';
 import GreetingLottie from '../components/DisplayLottie';
 import SocialLinks from '../components/SocialLinks';
 
-const Greetings = () => {
+const Greetings = ({ avatar_url, bio, location }: GithubUserType) => {
   useEffect(() => {
     document.documentElement.scrollTop = 0;
     document.scrollingElement!.scrollTop = 0;
@@ -28,26 +40,40 @@ const Greetings = () => {
           <Container className="py-lg-md d-flex">
             <div className="col px-0">
               <Row>
-                <Col lg="6">
-                  <h1 className="display-3 text-white">
-                    {greetings.title + ' '}
-                  </h1>
-                  <p className="lead text-white">{greetings.description}</p>
-                  <SocialLinks />
-                  {greetings.resumeLink && (
-                    <div className="btn-wrapper my-4">
-                      <Button
-                        className="btn-white btn-icon mb-3 mb-sm-0 ml-1"
-                        color="default"
-                        href={greetings.resumeLink}
-                      >
-                        <span className="btn-inner--icon mr-1">
-                          <i className="fa fa-file" />
-                        </span>
-                        <span className="btn-inner--text">See My Resume</span>
-                      </Button>
-                    </div>
-                  )}
+                <Col className="d-flex justify-content" lg="6">
+                  <Fade left duration={2000}>
+                    <span className="shadow col-3">
+                      <img
+                        src={avatar_url}
+                        style={{ width: '200px' }}
+                        alt=""
+                        className="rounded-circle img-center img-fluid shadow shadow-lg--hover mb-4"
+                      />
+                    </span>
+                    <h1 className="display-3 text-white">
+                      {greetings.title + ' '}
+                    </h1>
+                    <p className="text-white">{bio}</p>
+
+                    <p className=" text-white text-justify">
+                      {greetings.description}
+                    </p>
+                    {greetings.resumeLink && (
+                      <div className="btn-wrapper my-4">
+                        <Button
+                          className="btn-white btn-icon mb-3 mb-sm-0 ml-1"
+                          color="default"
+                          href={greetings.resumeLink}
+                          target="_blank"
+                        >
+                          <span className="btn-inner--icon mr-1">
+                            <i className="fa fa-file" />
+                          </span>
+                          <span className="btn-inner--text">See My Resume</span>
+                        </Button>
+                      </div>
+                    )}
+                  </Fade>
                 </Col>
                 <Col lg="6">
                   <GreetingLottie animationPath="/lottie/coding.json" />
@@ -69,7 +95,6 @@ const Greetings = () => {
             </svg>
           </div>
         </section>
-        {/* 1st Hero Variation */}
       </div>
     </main>
   );
