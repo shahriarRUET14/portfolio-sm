@@ -5,7 +5,7 @@
 
 <p align="center">
   <kbd>
-    <img src="/Demo1.png"></img>
+    <img src="/images/Demo1.png"></img>
   </kbd>
 </p>
 
