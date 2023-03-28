@@ -17,7 +17,7 @@ export const greetings: GreetingsType = {
   description:
     "I'm a skilled full-stack web developer with expertise in JavaScript-based technologies like TypeScript, ReactJS, NextJS, and NodeJS, as well as Spring Boot and databases like MySQL and MongoDB. I excel in all aspects of web development and keep up with the latest trends. I'm highly adaptable, collaborative, and dedicated to delivering high-quality work.",
   resumeLink:
-    'https://drive.google.com/file/d/17KhsZihJhnkjgN0YoSztDOr2idrCNDgr/view?usp=share_link',
+    'https://drive.google.com/file/d/1Ds0yeXhACPfeQumct7f40O1DJBi0_dy8/view?usp=sharing',
 };
 
 export const openSource = {
@@ -208,40 +208,41 @@ export const experience: ExperienceType[] = [
 
 export const projects: ProjectType[] = [
   {
-    name: 'developer-portfolio',
+    name: 'eCommerce SHOPOTH',
+    desc: 'Shopoth.com is a Bangladeshi online marketplace that offers a wide range of products, including clothing, electronics, home appliances, groceries, beauty and health products, and more. The website provides a convenient shopping experience for customers by allowing them to purchase products from various sellers in one place. Shopoth.com also offers fast and reliable delivery services, secure payment options, and easy return policies. The website aims to provide an enjoyable shopping experience for its customers while supporting local businesses in Bangladesh.',
+    link: 'https://shopoth.com/',
+  },
+  {
+    name: 'Developer Portfolio',
     desc: 'Software Developer Portfolio Template built with react.js and next.js bootstrap that helps you showcase your work and skills as a software developer.',
     github: 'https://github.com/shahriarRUET14/portfolio-sm',
     link: 'https://portfolio-sm-ten.vercel.app/',
   },
-  // {
-  //   name: 'AtlasMart',
-  //   desc: 'With Atlas Mart, it’s easy to find the products with the best price and ship them straight to your door.',
-  //   github: 'https://github.com/1hanzla100/Django-React-Marketplace',
-  // },
-  // {
-  //   name: 'Technota (Forum)',
-  //   desc: 'Get hands-on experience in technical skills with Technota',
-  //   github: 'https://github.com/1hanzla100/django-react-forum',
-  // },
+
+  {
+    name: 'Content Provider OnBoarding Portal',
+    desc: 'The VAS CP is a web-based application developed to maintain communication between the VAS team of Robi and Content Providers. The system is designed to streamline the process of creating and tracking activities via an API integrated with a third-party system named Processmaker. The application features AD Login and OTP login system for its users and offers five different role management configurations for case flow. Additionally, the system has a medium-complex stage management feature for each case or content, which allows users to manage different stages of a case or content efficiently. Overall, the VAS CP is a user-friendly and robust application that simplifies the VAS process and enhances communication between the Robi VAS team and content providers.',
+    github: 'https://vascp.robi.com.bd/login',
+  },
   // {
   //   name: 'Shopaza (Ecommerce)',
   //   desc: 'Now your reach to all your favorite entertainment and luxury items is just one touch apart',
-  //   github: 'https://github.com/1hanzla100/Django-ecommerce',
+  //   github: 'https://github.com/shahriarRUET14/Django-ecommerce',
   // },
 ];
 
-export const feedbacks: FeedbackType[] = [
-  {
-    name: 'John Smith',
-    feedback:
-      'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nisi, vel illo. Eum magnam beatae ratione eos natus accusamus unde pariatur fugiat at facilis, modi molestiae? Labore odio sit eligendi. Tenetur.',
-  },
-  {
-    name: 'John Smith',
-    feedback:
-      'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nisi, vel illo. Eum magnam beatae ratione eos natus accusamus unde pariatur fugiat at facilis, modi molestiae? Labore odio sit eligendi. Tenetur.',
-  },
-];
+// export const feedbacks: FeedbackType[] = [
+//   {
+//     name: 'John Smith',
+//     feedback:
+//       'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nisi, vel illo. Eum magnam beatae ratione eos natus accusamus unde pariatur fugiat at facilis, modi molestiae? Labore odio sit eligendi. Tenetur.',
+//   },
+//   {
+//     name: 'John Smith',
+//     feedback:
+//       'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nisi, vel illo. Eum magnam beatae ratione eos natus accusamus unde pariatur fugiat at facilis, modi molestiae? Labore odio sit eligendi. Tenetur.',
+//   },
+// ];
 
 // option to hide or show the ContactUs component
 export const showContactUs: boolean = true;
@@ -252,15 +253,15 @@ export const seoData: SEODataType = {
   description:
     'A passionate Full Stack Web Developer and Blockchain Developer.',
   author: 'Shahriar Mahmud',
-  image: 'https://avatars3.githubusercontent.com/u/59178380?v=4',
-  url: 'https://developer-portfolio-1hanzla100.vercel.app',
+  // image: 'https://avatars3.githubusercontent.com/u/59178380?v=4',
+  url: 'https://portfolio-sm-ten.vercel.app/',
   keywords: [
-    'Hanzla',
+    'Shahriar',
     'Shahriar Mahmud',
-    '@1hanzla100',
-    '1hanzla100',
+    '@shahriarRUET14',
+    'shahriarRUET14',
     'Portfolio',
-    'Hanzla Portfolio ',
+    'Shahriar Portfolio ',
     'Shahriar Mahmud Portfolio',
   ],
 };
