@@ -222,7 +222,7 @@ export const projects: ProjectType[] = [
   {
     name: 'Content Provider OnBoarding Portal',
     desc: 'The VAS CP is a web-based application developed to maintain communication between the VAS team of Robi and Content Providers. The system is designed to streamline the process of creating and tracking activities via an API integrated with a third-party system named Processmaker. The application features AD Login and OTP login system for its users and offers five different role management configurations for case flow. Additionally, the system has a medium-complex stage management feature for each case or content, which allows users to manage different stages of a case or content efficiently. Overall, the VAS CP is a user-friendly and robust application that simplifies the VAS process and enhances communication between the Robi VAS team and content providers.',
-    github: 'https://vascp.robi.com.bd/login',
+    link: 'https://vascp.robi.com.bd/login',
   },
   // {
   //   name: 'Shopaza (Ecommerce)',

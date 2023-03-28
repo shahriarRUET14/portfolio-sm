@@ -39,7 +39,7 @@ const ProjectsCard = ({ name, desc, github, link }: ProjectType) => {
                     <span className="btn-inner--icon">
                       <i className="fa fa-arrow-right mr-2" />
                     </span>
-                    <span className="nav-link-inner--text ml-1">Demo</span>
+                    <span className="nav-link-inner--text ml-1">Preview</span>
                   </Button>
                 ) : null}
               </div>
