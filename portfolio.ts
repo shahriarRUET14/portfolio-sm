@@ -27,7 +27,7 @@ export const openSource = {
 export const contact = {};
 
 export const socialLinks: SocialLinksType = {
-  url: 'https://github.com/shahriarRUET14',
+  url: 'https://drive.google.com/file/d/1Ds0yeXhACPfeQumct7f40O1DJBi0_dy8/view?usp=sharing',
   linkedin: 'https://www.linkedin.com/in/shahriar-ruet14/',
   github: 'https://github.com/shahriarRUET14',
   instagram: 'https://www.instagram.com/shahriar.ruet14/',
