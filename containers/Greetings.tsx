@@ -15,7 +15,9 @@ export default function Greetings({ avatar_url }: GithubUserType) {
             <h1 className="mt-2 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl">
               {greetings.title}
             </h1>
-            <p className="mt-3 text-lg text-slate-600">{greetings.subheadline}</p>
+            <p className="mt-3 text-lg font-medium text-slate-700">
+              {greetings.headline} · {greetings.subheadline}
+            </p>
             <div className="mt-5 space-y-2">
               {greetings.pitch.map((line) => (
                 <p key={line} className="text-base leading-relaxed text-slate-700">

@@ -1,21 +1,18 @@
 {
-  "short_name": "Portfolio",
-  "name": "Hanzla's Portfolio",
-  "description": "A passionate Full Stack Web Developer and Mobile App Developer.",
+  "short_name": "Shahriar Mahmud",
+  "name": "Shahriar Mahmud — Senior Software Engineer",
+  "description": "Portfolio of Shahriar Mahmud, Senior Software Engineer specializing in FinTech microservices, Spring Boot, and scalable enterprise platforms.",
   "icons": [
     {
-      "src": "./favicon.png",
-      "type": "image/png",
-      "sizes": "192x192"
-    },
-    {
-      "src": "./favicon.png",
-      "type": "image/png",
-      "sizes": "512x512"
+      "src": "/favicon.ico",
+      "type": "image/x-icon",
+      "sizes": "48x48"
     }
   ],
-  "start_url": "./index.html",
+  "start_url": "/",
   "display": "standalone",
-  "theme_color": "#11cdef",
-  "background_color": "#11cdef"
+  "theme_color": "#1d4ed8",
+  "background_color": "#f8fafc",
+  "lang": "en",
+  "categories": ["business", "productivity"]
 }

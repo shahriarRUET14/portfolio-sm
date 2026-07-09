@@ -6,6 +6,9 @@
   "repository": "https://github.com/1hanzla100/hanzla-portfolio.git",
   "author": "Shahriar Mahmud",
   "license": "MIT",
+  "engines": {
+    "node": "24.x"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",

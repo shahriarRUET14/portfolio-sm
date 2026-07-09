@@ -5,6 +5,13 @@ export type SEODataType = {
   image?: string;
   url?: string;
   keywords: string[];
+  jobTitle?: string;
+  location?: string;
+  email?: string;
+  phone?: string;
+  sameAs?: string[];
+  locale?: string;
+  siteName?: string;
 };
 
 export type SocialLinksType = {

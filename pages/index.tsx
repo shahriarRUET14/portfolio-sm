@@ -55,7 +55,7 @@ export default function Home({
 }) {
   return (
     <>
-      <SEO />
+      <SEO imageUrl={githubProfileData.avatar_url || undefined} />
       <Navigation />
       <main>
         <Greetings {...githubProfileData} />
