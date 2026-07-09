@@ -1,48 +1,38 @@
-import React from 'react';
-import EducationCard from '../components/EducationCard';
 import { educationInfo } from '../portfolio';
-import { Container, Row, Col } from 'reactstrap';
+import SectionHeading from '../components/ui/SectionHeading';
 
-const Education = () => {
+export default function Education() {
+  if (!educationInfo?.length) return null;
+
   return (
-    educationInfo && (
-      <section className="section pb-0 bg-gradient-info my-5">
-        <Container>
-          <div className="d-flex px-3">
-            <div>
-              <div className="icon icon-lg icon-shape bg-gradient-white shadow rounded-circle text-info">
-                <i className="ni ni-books text-info" />
+    <section className="border-b border-slate-200 bg-slate-50">
+      <div className="section-container">
+        <SectionHeading title="Education" />
+        <div className="space-y-4">
+          {educationInfo.map((info) => (
+            <article
+              key={info.schoolName}
+              className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm"
+            >
+              <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between sm:gap-4">
+                <h3 className="text-lg font-semibold text-slate-900">
+                  {info.subHeader}
+                </h3>
+                <p className="shrink-0 text-sm text-slate-500">{info.duration}</p>
               </div>
-            </div>
-            <div className="pl-4">
-              <h4 className="display-3 text-white">Education</h4>
-            </div>
-          </div>
-          <Row className="row-grid align-items-center">
-            {educationInfo.map((info) => {
-              return (
-                <Col className="order-lg-1" lg="6" key={info.schoolName}>
-                  <EducationCard {...info} />
-                </Col>
-              );
-            })}
-          </Row>
-        </Container>
-        <div className="separator separator-bottom separator-skew zindex-100">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            preserveAspectRatio="none"
-            version="1.1"
-            viewBox="0 0 2560 100"
-            x="0"
-            y="0"
-          >
-            <polygon className="fill-white" points="2560 0 2560 100 0 100" />
-          </svg>
+              <p className="mt-1 text-sm font-medium text-slate-700">
+                {info.schoolName}
+                {info.location ? ` · ${info.location}` : ''}
+              </p>
+              {info.desc ? (
+                <p className="mt-3 text-sm leading-relaxed text-slate-600">
+                  {info.desc}
+                </p>
+              ) : null}
+            </article>
+          ))}
         </div>
-      </section>
-    )
+      </div>
+    </section>
   );
-};
-
-export default Education;
+}

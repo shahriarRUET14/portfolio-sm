@@ -7,80 +7,75 @@ export type SEODataType = {
   keywords: string[];
 };
 
-// https://www.typescriptlang.org/docs/handbook/2/objects.html#index-signatures
-
 export type SocialLinksType = {
-  [link: string]: string;
+  linkedin?: string;
+  github?: string;
+  instagram?: string;
+  facebook?: string;
+  resume?: string;
 };
-
-// * HERO SECTION
 
 export type GreetingsType = {
   name: string;
   title: string;
-  description?: string;
+  headline: string;
+  subheadline: string;
+  pitch: string[];
   resumeLink?: string;
+  metrics: MetricType[];
 };
 
-// * SKILLS SECTION
-
-type SoftwareSkillType = {
-  skillName: string;
-  fontAwesomeClassName: string;
+export type MetricType = {
+  value: string;
+  label: string;
 };
 
-type SkillType = {
+export type AchievementType = {
   title: string;
-  lottieAnimationFile: string;
-  skills: React.ReactNode[] | string[];
-  softwareSkills: SoftwareSkillType[];
+  description: string;
+};
+
+export type SkillGroupType = {
+  category: string;
+  skills: string[];
 };
 
 export type SkillsSectionType = {
   title: string;
-  subTitle: string;
-  data: SkillType[];
+  groups: SkillGroupType[];
 };
-
-// * PROFICIENCY SECTION
-
-export type SkillBarsType = {
-  Stack: string;
-  progressPercentage: string;
-};
-
-// * EDUCATION SECTION
 
 export type EducationType = {
   schoolName: string;
   subHeader: string;
   duration: string;
-  desc: string;
+  desc?: string;
   grade?: string;
   descBullets?: string[];
+  location?: string;
 };
-
-// * EXPERIENCE SECTION
 
 export type ExperienceType = {
   role: string;
   company: string;
-  companyLogo: string;
+  companyLogo?: string;
   date: string;
-  desc: string;
-  descBullets?: string[];
+  location?: string;
+  desc?: string;
+  descBullets: string[];
+  techStack: string[];
+  highlight?: boolean;
 };
-
-// * PROJECT SECTION
 
 export type ProjectType = {
   name: string;
-  desc: string;
-  github?: string;
+  problem: string;
+  role: string;
+  stack: string[];
+  impact: string;
   link?: string;
+  github?: string;
 };
-
-// * FEEDBACK SECTION
 
 export type FeedbackType = {
   name: string;

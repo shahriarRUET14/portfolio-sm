@@ -1,82 +1,24 @@
-import React from 'react';
-import { Button } from 'reactstrap';
 import { socialLinks } from '../portfolio';
+import Button from './ui/Button';
 
-const SocialLinks = () => {
+export default function SocialLinks() {
   return (
-    <div className="btn-wrapper text-lg">
-      {socialLinks.url && (
-        <Button
-          className="btn-icon-only rounded-circle ml-1"
-          color="white"
-          rel="noopener"
-          aria-label="URL"
-          href={socialLinks.url}
-          target="_blank"
-        >
-          <span className="btn-inner--icon">
-            <i className="fa fa-link" />
-          </span>
+    <div className="flex items-center gap-2">
+      {socialLinks.resume ? (
+        <Button href={socialLinks.resume} variant="ghost" target="_blank" rel="noopener noreferrer">
+          Resume
         </Button>
-      )}
-      {socialLinks.linkedin && (
-        <Button
-          className="btn-icon-only rounded-circle ml-1"
-          color="twitter"
-          rel="noopener"
-          aria-label="Linkedin"
-          href={socialLinks.linkedin}
-          target="_blank"
-        >
-          <span className="btn-inner--icon">
-            <i className="fa fa-linkedin" />
-          </span>
+      ) : null}
+      {socialLinks.linkedin ? (
+        <Button href={socialLinks.linkedin} variant="ghost" target="_blank" rel="noopener noreferrer">
+          LinkedIn
         </Button>
-      )}
-      {socialLinks.github && (
-        <Button
-          className="btn-icon-only rounded-circle ml-1"
-          color="github"
-          href={socialLinks.github}
-          rel="noopener"
-          aria-label="Github"
-          target="_blank"
-        >
-          <span className="btn-inner--icon">
-            <i className="fa fa-github" />
-          </span>
+      ) : null}
+      {socialLinks.github ? (
+        <Button href={socialLinks.github} variant="ghost" target="_blank" rel="noopener noreferrer">
+          GitHub
         </Button>
-      )}
-      {socialLinks.instagram && (
-        <Button
-          className="btn-icon-only rounded-circle ml-1"
-          color="instagram"
-          href={socialLinks.instagram}
-          target="_blank"
-          rel="noopener"
-          aria-label="Instagram"
-        >
-          <span className="btn-inner--icon">
-            <i className="fa fa-instagram" />
-          </span>
-        </Button>
-      )}
-      {socialLinks.facebook && (
-        <Button
-          className="btn-icon-only rounded-circle ml-1"
-          color="facebook"
-          href={socialLinks.facebook}
-          target="_blank"
-          rel="noopener"
-          aria-label="Facebook"
-        >
-          <span className="btn-inner--icon">
-            <i className="fa fa-facebook-square" />
-          </span>
-        </Button>
-      )}
+      ) : null}
     </div>
   );
-};
-
-export default SocialLinks;
+}

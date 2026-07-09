@@ -1,103 +1,74 @@
-import React, { useEffect } from 'react';
-import { greetings } from '../portfolio';
-import { GithubUserType } from '../types';
+import Image from 'next/image';
+import { greetings, socialLinks } from '../portfolio';
+import type { GithubUserType } from '../types';
+import Button from '../components/ui/Button';
 
-import {
-  Button,
-  Container,
-  Row,
-  Col,
-  Card,
-  Fade,
-  CardBody,
-  Badge,
-  CardTitle,
-} from 'reactstrap';
-import GreetingLottie from '../components/DisplayLottie';
-import SocialLinks from '../components/SocialLinks';
-
-const Greetings = ({ avatar_url, bio, location }: GithubUserType) => {
-  useEffect(() => {
-    document.documentElement.scrollTop = 0;
-    document.scrollingElement!.scrollTop = 0;
-  });
-
+export default function Greetings({ avatar_url }: GithubUserType) {
   return (
-    <main>
-      <div className="position-relative">
-        <section className="section section-lg section-shaped pb-250">
-          <div className="shape shape-style-1 bg-gradient-info">
-            <span />
-            <span />
-            <span />
-            <span />
-            <span />
-            <span />
-            <span />
-            <span />
-            <span />
-          </div>
-          <Container className="py-lg-md d-flex">
-            <div className="col px-0">
-              <Row>
-                <Col className="d-flex justify-content" lg="6">
-                  <Fade left duration={2000}>
-                    <span className="shadow col-3">
-                      <img
-                        src={avatar_url}
-                        style={{ width: '200px' }}
-                        alt=""
-                        className="rounded-circle img-center img-fluid shadow shadow-lg--hover mb-4"
-                      />
-                    </span>
-                    <h1 className="display-3 text-white">
-                      {greetings.title + ' '}
-                    </h1>
-                    <p className="text-white">{bio}</p>
-
-                    <p className=" text-white text-justify">
-                      {greetings.description}
-                    </p>
-                    {greetings.resumeLink && (
-                      <div className="btn-wrapper my-4">
-                        <Button
-                          className="btn-white btn-icon mb-3 mb-sm-0 ml-1"
-                          color="default"
-                          href={greetings.resumeLink}
-                          target="_blank"
-                        >
-                          <span className="btn-inner--icon mr-1">
-                            <i className="fa fa-file" />
-                          </span>
-                          <span className="btn-inner--text">See My Resume</span>
-                        </Button>
-                      </div>
-                    )}
-                  </Fade>
-                </Col>
-                <Col lg="6">
-                  <GreetingLottie animationPath="/lottie/skills/64110-web-development.json" />
-                </Col>
-              </Row>
+    <section className="border-b border-slate-200 bg-white">
+      <div className="section-container">
+        <div className="grid items-center gap-10 lg:grid-cols-[1fr_auto]">
+          <div>
+            <p className="text-sm font-medium uppercase tracking-wide text-blue-700">
+              {greetings.headline}
+            </p>
+            <h1 className="mt-2 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl">
+              {greetings.title}
+            </h1>
+            <p className="mt-3 text-lg text-slate-600">{greetings.subheadline}</p>
+            <div className="mt-5 space-y-2">
+              {greetings.pitch.map((line) => (
+                <p key={line} className="text-base leading-relaxed text-slate-700">
+                  {line}
+                </p>
+              ))}
             </div>
-          </Container>
-          {/* SVG separator */}
-          <div className="separator separator-bottom separator-skew">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              preserveAspectRatio="none"
-              version="1.1"
-              viewBox="0 0 2560 100"
-              x="0"
-              y="0"
-            >
-              <polygon className="fill-white" points="2560 0 2560 100 0 100" />
-            </svg>
-          </div>
-        </section>
-      </div>
-    </main>
-  );
-};
 
-export default Greetings;
+            <div className="mt-8 flex flex-wrap gap-3">
+              {greetings.resumeLink ? (
+                <Button
+                  href={greetings.resumeLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  download
+                >
+                  Download Resume
+                </Button>
+              ) : null}
+              {socialLinks.linkedin ? (
+                <Button href={socialLinks.linkedin} variant="secondary" target="_blank" rel="noopener noreferrer">
+                  LinkedIn
+                </Button>
+              ) : null}
+            </div>
+          </div>
+
+          {avatar_url ? (
+            <div className="flex justify-center lg:justify-end">
+              <Image
+                src={avatar_url}
+                alt={`${greetings.title} profile photo`}
+                width={200}
+                height={200}
+                className="rounded-full border-4 border-slate-100 shadow-md"
+                priority
+              />
+            </div>
+          ) : null}
+        </div>
+
+        <div className="mt-12 grid gap-4 sm:grid-cols-3">
+          {greetings.metrics.map((metric) => (
+            <div
+              key={metric.label}
+              className="rounded-xl border border-slate-200 bg-slate-50 px-5 py-4 text-center"
+            >
+              <p className="text-2xl font-bold text-blue-700">{metric.value}</p>
+              <p className="mt-1 text-sm text-slate-600">{metric.label}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}

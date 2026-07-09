@@ -1,64 +1,27 @@
-import { Icon } from '@iconify/react';
-import React, { Fragment } from 'react';
-import Fade from 'react-reveal/Fade';
-import { Col, Container, Row, UncontrolledTooltip } from 'reactstrap';
-import DisplayLottie from '../components/DisplayLottie';
 import { skillsSection } from '../portfolio';
+import SectionHeading from '../components/ui/SectionHeading';
+import Chip from '../components/ui/Chip';
 
-const Skills = () => {
+export default function Skills() {
   return (
-    skillsSection && (
-      <Container className="text-center my-5 section section-lg">
-        <h1 className="h1">{skillsSection.title}</h1>
-        <p className="lead">{skillsSection.subTitle}</p>
-        {skillsSection.data.map((section, index) => {
-          return (
-            <Row className="my-5" key={index}>
-              <Col lg="6" className="order-2 order-lg-1">
-                <Fade left duration={2000}>
-                  <DisplayLottie animationPath={section.lottieAnimationFile} />
-                </Fade>
-              </Col>
-              <Col lg="6" className="order-1 order-lg-2">
-                <Fade right duration={2000}>
-                  <h3 className="h3 mb-2">{section.title}</h3>
-                  <div className="d-flex justify-content-center flex-wrap mb-2">
-                    {section.softwareSkills.map((skill, i) => {
-                      return (
-                        <Fragment key={i}>
-                          <div
-                            className="icon icon-lg icon-shape shadow-sm rounded-circle m-1"
-                            id={skill.skillName.replace(/\s/g, '')}
-                          >
-                            <Icon
-                              icon={skill.fontAwesomeClassName}
-                              data-inline="false"
-                            ></Icon>
-                          </div>
-                          <UncontrolledTooltip
-                            delay={0}
-                            placement="bottom"
-                            target={skill.skillName.replace(/\s/g, '')}
-                          >
-                            {skill.skillName}
-                          </UncontrolledTooltip>
-                        </Fragment>
-                      );
-                    })}
-                  </div>
-                  <div>
-                    {section.skills.map((skill, i) => {
-                      return <p key={i}>{skill}</p>;
-                    })}
-                  </div>
-                </Fade>
-              </Col>
-            </Row>
-          );
-        })}
-      </Container>
-    )
+    <section id="skills" className="section-anchor border-b border-slate-200 bg-white">
+      <div className="section-container">
+        <SectionHeading title={skillsSection.title} />
+        <div className="space-y-8">
+          {skillsSection.groups.map((group) => (
+            <div key={group.category}>
+              <h3 className="mb-3 text-sm font-semibold uppercase tracking-wide text-slate-500">
+                {group.category}
+              </h3>
+              <div className="flex flex-wrap gap-2">
+                {group.skills.map((skill) => (
+                  <Chip key={skill}>{skill}</Chip>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
   );
-};
-
-export default Skills;
+}

@@ -1,54 +1,47 @@
-import React from 'react';
-import { Card, CardBody, Col, Button } from 'reactstrap';
-import Fade from 'react-reveal/Fade';
-import { ProjectType } from '../types/sections';
+import type { ProjectType } from '../types/sections';
+import Chip from './ui/Chip';
+import Button from './ui/Button';
 
-const ProjectsCard = ({ name, desc, github, link }: ProjectType) => {
+export default function ProjectsCard({
+  name,
+  problem,
+  role,
+  stack,
+  impact,
+  link,
+  github,
+}: ProjectType) {
   return (
-    <Col lg="6">
-      <Fade bottom duration={2000}>
-        <Card className="shadow-lg--hover shadow mt-4">
-          <CardBody>
-            <div className="d-flex px-3">
-              <div className="pl-4">
-                <h3>{name}</h3>
-                <p className="description mt-3">{desc}</p>
-                {github ? (
-                  <Button
-                    className="btn-icon"
-                    color="github"
-                    href={github}
-                    target="_blank"
-                    rel="noopener"
-                    aria-label="Github"
-                  >
-                    <span className="btn-inner--icon">
-                      <i className="fa fa-github" />
-                    </span>
-                  </Button>
-                ) : null}
-                {link ? (
-                  <Button
-                    className="btn-icon"
-                    color="success"
-                    href={link}
-                    target="_blank"
-                    rel="noopener"
-                    aria-label="Twitter"
-                  >
-                    <span className="btn-inner--icon">
-                      <i className="fa fa-arrow-right mr-2" />
-                    </span>
-                    <span className="nav-link-inner--text ml-1">Preview</span>
-                  </Button>
-                ) : null}
-              </div>
-            </div>
-          </CardBody>
-        </Card>
-      </Fade>
-    </Col>
+    <article className="flex h-full flex-col rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
+      <h3 className="text-lg font-semibold text-slate-900">{name}</h3>
+      <p className="mt-2 text-sm text-slate-600">{problem}</p>
+      <p className="mt-3 text-xs font-medium uppercase tracking-wide text-slate-500">
+        Role
+      </p>
+      <p className="mt-1 text-sm text-slate-700">{role}</p>
+      <div className="mt-4 flex flex-wrap gap-2">
+        {stack.map((tech) => (
+          <Chip key={tech}>{tech}</Chip>
+        ))}
+      </div>
+      <p className="mt-4 text-sm leading-relaxed text-slate-600">
+        <span className="font-medium text-slate-800">Impact: </span>
+        {impact}
+      </p>
+      {link || github ? (
+        <div className="mt-5 flex flex-wrap gap-2">
+          {link ? (
+            <Button href={link} variant="secondary" target="_blank" rel="noopener noreferrer">
+              View Project
+            </Button>
+          ) : null}
+          {github ? (
+            <Button href={github} variant="ghost" target="_blank" rel="noopener noreferrer">
+              GitHub
+            </Button>
+          ) : null}
+        </div>
+      ) : null}
+    </article>
   );
-};
-
-export default ProjectsCard;
+}

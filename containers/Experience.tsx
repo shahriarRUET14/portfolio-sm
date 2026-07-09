@@ -1,32 +1,21 @@
-import React from 'react';
 import { experience } from '../portfolio';
-import { Container, Row } from 'reactstrap';
+import SectionHeading from '../components/ui/SectionHeading';
 import ExperienceCard from '../components/ExperienceCard';
 
-const Experience = () => {
+export default function Experience() {
   return (
-    experience && (
-      <section className="section section-lg">
-        <Container>
-          <div className="d-flex p-4">
-            <div>
-              <div className="icon icon-lg icon-shape bg-gradient-white shadow rounded-circle text-info">
-                <i className="ni ni-briefcase-24 text-info" />
-              </div>
-            </div>
-            <div className="pl-4">
-              <h4 className="display-3 text-info">Experience</h4>
-            </div>
-          </div>
-          <Row className="row-grid align-items-start">
-            {experience.map((data, i) => {
-              return <ExperienceCard key={i} {...data} />;
-            })}
-          </Row>
-        </Container>
-      </section>
-    )
+    <section
+      id="experience"
+      className="section-anchor border-b border-slate-200 bg-white"
+    >
+      <div className="section-container">
+        <SectionHeading title="Experience" />
+        <div className="space-y-0">
+          {experience.map((data) => (
+            <ExperienceCard key={`${data.company}-${data.role}-${data.date}`} {...data} />
+          ))}
+        </div>
+      </div>
+    </section>
   );
-};
-
-export default Experience;
+}

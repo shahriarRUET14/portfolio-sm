@@ -1,32 +1,21 @@
-import React from 'react';
 import { projects } from '../portfolio';
-import { Container, Row } from 'reactstrap';
+import SectionHeading from '../components/ui/SectionHeading';
 import ProjectsCard from '../components/ProjectsCard';
 
-const Projects = () => {
+export default function Projects() {
   return (
-    projects && (
-      <section className="section section-lg">
-        <Container>
-          <div className="d-flex p-4">
-            <div>
-              <div className="icon icon-lg icon-shape bg-gradient-white shadow rounded-circle text-info">
-                <i className="ni ni-laptop text-info" />
-              </div>
-            </div>
-            <div className="pl-4">
-              <h4 className="display-3 text-info">Projects</h4>
-            </div>
-          </div>
-          <Row className="row-grid align-items-center">
-            {projects.map((data, i) => {
-              return <ProjectsCard key={i} {...data} />;
-            })}
-          </Row>
-        </Container>
-      </section>
-    )
+    <section
+      id="projects"
+      className="section-anchor border-b border-slate-200 bg-slate-50"
+    >
+      <div className="section-container">
+        <SectionHeading title="Projects" subtitle="Enterprise case studies and platform delivery." />
+        <div className="grid gap-6 md:grid-cols-2">
+          {projects.map((data) => (
+            <ProjectsCard key={data.name} {...data} />
+          ))}
+        </div>
+      </div>
+    </section>
   );
-};
-
-export default Projects;
+}
