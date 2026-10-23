@@ -1,5 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://portfolio-sm-ten.vercel.app/sitemap.xml
-Host: https://portfolio-sm-ten.vercel.app

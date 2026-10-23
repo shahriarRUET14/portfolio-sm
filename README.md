@@ -1,119 +1,92 @@
-<h1 align="center">Welcome to developer-portfolio </h1>
+# Shahriar Mahmud — Portfolio
 
-## Software Developer Portfolio Template built with Next.js, bootstrap that helps you showcase your work and skills as a software developer.
+Personal site of Shahriar Mahmud, Senior Software Engineer. Live at
+[portfolio-sm-ten.vercel.app](https://portfolio-sm-ten.vercel.app).
 
-<p align="center">
-  <kbd>
-    <img src="/images/Demo1.png"></img>
-  </kbd>
-</p>
+Built with Next.js 16 (App Router, server components by default), React 19,
+TypeScript (strict) and Tailwind CSS. No UI or animation libraries; the only
+runtime dependency beyond Next/React is `@emailjs/browser`, loaded on demand
+when the contact form is submitted.
 
-## To view a live example, **[click here](https://portfolio-sm-ten.vercel.app/)**.
+## Editing content
 
-Just Edit `portfolio.js` to get your personal portfolio. Feel free to use it as-is or customize it as much as you want.
+All copy lives in `content/` — components never hard-code facts.
 
-But if you want to **contribute** and make this much better for other developer have a look at [Issues](https://github.com/shahriarRUET14/portfolio-sm/issues).
+| File                   | What it holds                                                               |
+| ---------------------- | --------------------------------------------------------------------------- |
+| `content/profile.ts`   | Name, headline, contact links, location, education, résumé path             |
+| `content/projects.ts`  | Selected work and case studies (a project without `caseStudy` gets no page) |
+| `content/approach.ts`  | Engineering principles, each tied to evidence                               |
+| `content/expertise.ts` | Capability groups with where each was applied                               |
+| `content/about.ts`     | About narrative, experience timeline, leadership themes                     |
 
-If you created something awesome and want to contribute then feel free to open an [pull request](https://github.com/shahriarRUET14/portfolio-sm/pulls).
+Years of experience are calculated from `profile.careerStart`, so they stay
+accurate without edits. The résumé is served from `public/resume.pdf`.
 
-## Sections
+**Content integrity.** Every figure on the site comes from the résumé. Lines in
+`content/projects.ts` marked `OWNER: verify` explain _why_ a stated fact mattered
+and should be confirmed. Each case study's `ownerNotes` lists missing details;
+they render as a dashed box in `yarn dev` only and never in production.
 
-✔️ Summary and About me\
-✔️ Skills\
-✔️ Education\
-✔️ Work Experience\
-✔️ Feedbacks\
-✔️ Projects\
-✔️ Github Profile
-
-## Getting Started
-
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
-
-You'll need [Git](https://git-scm.com) and [Node.js](https://nodejs.org/en/download/) (which comes with [npm](http://npmjs.com)) installed on your computer.
-<br>
-**For Windows** Install Visual C++ Build Environment: [Visual Studio Build Tools](https://visualstudio.microsoft.com/thank-you-downloading-visual-studio/?sku=BuildTools)
-
-```
-node@v10.16.0 or higher
-npm@6.9.0 or higher
-git@2.17.1 or higher
-```
-
-## How To Use
-
-1. Fork this repoistory and clone it to your local machine.
+## Running locally
 
 ```bash
-$ git clone https://github.com/<your-username>/developer-portfolio.git
+nvm use            # Node 24 (see .nvmrc); Node >= 20.9 works
+yarn install
+yarn dev           # http://localhost:3000
 ```
 
-2. Go into the repository
+| Command          | Purpose                             |
+| ---------------- | ----------------------------------- |
+| `yarn build`     | Production build (also type-checks) |
+| `yarn start`     | Serve the production build          |
+| `yarn lint`      | ESLint + Prettier check             |
+| `yarn typecheck` | TypeScript only                     |
+| `yarn format`    | Prettier write                      |
 
-```bash
-$ cd developer-portfolio
+## Environment variables
+
+See `.env.example`. All are optional.
+
+- `NEXT_PUBLIC_SITE_URL` — canonical origin. Set this when a custom domain is
+  added; canonical links, sitemap, robots and social cards all follow it.
+- `NEXT_PUBLIC_EMAILJS_SERVICE_ID`, `NEXT_PUBLIC_EMAILJS_TEMPLATE_ID`,
+  `NEXT_PUBLIC_EMAILJS_PUBLIC_KEY` — contact form. The template receives
+  `user_name`, `user_email` and `user_message`. If any are missing, the form is
+  replaced by a direct email link (it never fakes a successful send).
+- `GOOGLE_SITE_VERIFICATION` — Search Console HTML-tag token.
+
+## Deploying (Vercel)
+
+The repository is connected to Vercel; pushing to `master` deploys production
+and any other branch gets a preview URL. No extra build settings are needed —
+Vercel detects Next.js and Yarn from `yarn.lock`.
+
+## Structure
+
+```
+app/                 routes, metadata, sitemap/robots/manifest, OG images, icons
+  work/[slug]/       case-study template (statically generated)
+components/
+  home/              homepage sections
+  work/              case-study building blocks
+  diagrams/          architecture diagrams (HTML/CSS, so labels stay real text)
+  site/              header, footer, theme toggle, mobile menu, scroll reveals
+  contact/           contact form and small client widgets
+content/             all site copy (see above)
+lib/                 site URL, dates, structured data, contact config
+styles/globals.css   design tokens (dark + light) and base styles
 ```
 
-3. Install dependencies
+## Search visibility checklist
 
-```bash
-$ yarn
-```
+The code handles titles, descriptions, canonical URLs, Open Graph images,
+`Person`/`ProfilePage`/`Article` structured data, sitemap and robots. Ranking
+for a name also depends on things outside the code:
 
-4. Edit `portfolio.js`
-
-5. Start's development server
-
-```bash
-$ yarn dev
-```
-
-## Linking Portfolio to Github
-
-```javascript
-  //  portfolio.js
-  githubUserName: 'YOUR GITHUB USERNAME HERE',
-```
-
-#### Using Emojis
-
-For adding emoji 😃 into the texts in `Portfolio.js`, use the `emoji()` function and pass the text you need as an argument. This would help in keeping emojis compatible across different browsers and platforms.
-
-## Technologies Used
-
-- [Next.js](https://nextjs.org/)
-- [axios](https://www.npmjs.com/package/axios)
-- [reactstrap](https://reactstrap.github.io/)
-- [react-reveal](https://www.react-reveal.com/)
-- [react-lottie](https://www.npmjs.com/package/react-lottie)
-- [react-easy-emoji](https://github.com/appfigures/react-easy-emoji)
-- [react-headroom](https://github.com/KyleAMathews/react-headroom)
-- [color-thief](https://github.com/lokesh/color-thief)
-
-## Illustrations
-
-- [Lottie File Source](https://lottiefiles.com)
-
-## Icons
-
-Iconify Icons are used in skill section. You can find all the icons here: [Iconify](https://icon-sets.iconify.design/).
-
-## For the Future
-
-If you can help us with these. Please don't hesitate to open a [pull request](https://github.com/shahriarRUET14/portfolio-sm/pulls).
-
-- Enable Dark Mode
-
-- Add More Sections
-
-## Author
-
-👤 **Shahriar Mahmud**
-
-- Website: https://www.linkedin.com/in/shahriar-ruet14/
-- Github: [@Shahriar](https://github.com/shahriarRUET14)
-- LinkedIn: [@Shahriar](https://www.linkedin.com/in/shahriar-ruet14/)
-
-## Show your support
-
-Give a ⭐️ if this project helped you!
+1. Verify the site in [Google Search Console](https://search.google.com/search-console)
+   (set `GOOGLE_SITE_VERIFICATION`) and submit `/sitemap.xml`.
+2. Link to the site from LinkedIn (Contact info → Website and Featured), the
+   GitHub profile README and website field, and the résumé.
+3. Consider a custom domain (for example `shahriarmahmud.dev`) and set
+   `NEXT_PUBLIC_SITE_URL` to it.

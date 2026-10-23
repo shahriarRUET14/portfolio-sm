@@ -1,6 +1,7 @@
-public/lottie/
 .next
-.vscode
-./dist
-styles/argon-design-system-react.css
-styles/vendor/**/*.css
+node_modules
+out
+build
+public
+yarn.lock
+next-env.d.ts

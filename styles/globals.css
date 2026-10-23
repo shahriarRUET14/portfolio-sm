@@ -3,31 +3,185 @@
 @tailwind utilities;
 
 @layer base {
-  html {
-    scroll-behavior: smooth;
+  :root,
+  :root[data-theme='dark'] {
+    --bg: 11 12 11;
+    --surface: 18 20 18;
+    --surface-2: 26 28 26;
+    --line: 40 43 40;
+    --line-strong: 64 68 63;
+    --fg: 237 235 230;
+    --muted: 160 163 157;
+    --subtle: 132 135 129;
+    --accent: 198 242 78;
+    --accent-ink: 198 242 78;
+    --accent-fg: 11 12 11;
+    --danger: 255 128 112;
+    color-scheme: dark;
   }
 
-  @media (prefers-reduced-motion: reduce) {
+  :root[data-theme='light'] {
+    --bg: 244 242 236;
+    --surface: 250 249 245;
+    --surface-2: 235 232 224;
+    --line: 218 214 204;
+    --line-strong: 186 181 168;
+    --fg: 21 22 20;
+    --muted: 84 87 82;
+    --subtle: 98 101 95;
+    --accent: 198 242 78;
+    --accent-ink: 61 96 16;
+    --accent-fg: 11 12 11;
+    --danger: 176 32 24;
+    color-scheme: light;
+  }
+
+  html {
+    background: rgb(var(--bg));
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
     html {
-      scroll-behavior: auto;
+      scroll-behavior: smooth;
     }
   }
 
   body {
-    @apply bg-slate-50 text-slate-900 antialiased;
+    @apply bg-bg font-sans text-fg antialiased;
+    font-feature-settings: 'ss01', 'cv11';
+    text-rendering: optimizeLegibility;
   }
 
   ::selection {
-    @apply bg-blue-100 text-blue-900;
+    background: rgb(var(--accent));
+    color: rgb(var(--accent-fg));
+  }
+
+  :focus-visible {
+    outline: 2px solid rgb(var(--accent-ink));
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  [id] {
+    scroll-margin-top: 5.5rem;
+  }
+
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
   }
 }
 
 @layer components {
-  .section-container {
-    @apply mx-auto w-full max-w-content px-6 py-20;
+  .container-page {
+    @apply mx-auto w-full max-w-page px-4 sm:px-6 lg:px-10;
   }
 
-  .section-anchor {
-    @apply scroll-mt-20;
+  .label {
+    @apply font-mono text-label uppercase text-muted;
+  }
+
+  .hairline {
+    @apply border-line;
+  }
+
+  /* Blueprint column guides behind the page. Decorative only. */
+  .grid-guides {
+    background-image: linear-gradient(
+      to right,
+      rgb(var(--line) / 0.45) 1px,
+      transparent 1px
+    );
+    background-size: calc(100% / 4) 100%;
+  }
+
+  @media (min-width: 1024px) {
+    .grid-guides {
+      background-size: calc(100% / 12) 100%;
+    }
+  }
+
+  .link {
+    @apply underline decoration-line-strong decoration-1 underline-offset-[0.22em] transition-colors duration-200;
+  }
+
+  .link:hover {
+    @apply decoration-accent-ink text-fg;
+  }
+
+  .btn {
+    @apply inline-flex min-h-[44px] items-center justify-center gap-2 px-5 text-sm font-medium transition-colors duration-200;
+  }
+
+  .btn-primary {
+    @apply btn bg-accent text-accent-fg hover:bg-fg hover:text-bg;
+  }
+
+  .btn-secondary {
+    @apply btn border border-line-strong text-fg hover:border-fg;
+  }
+
+  .arrow {
+    @apply inline-block transition-transform duration-200 ease-out-quart;
+  }
+
+  .group:hover .arrow,
+  .btn:hover .arrow {
+    transform: translateX(3px);
+  }
+
+  .group:hover .arrow-up {
+    transform: translateY(-3px);
+  }
+
+  .prose-body p + p {
+    @apply mt-5;
+  }
+}
+
+/* ---------- Motion ---------- */
+
+@media (prefers-reduced-motion: no-preference) {
+  .enter {
+    animation: enter 0.7s cubic-bezier(0.25, 1, 0.5, 1) both;
+    animation-delay: var(--enter-delay, 0ms);
+  }
+
+  @keyframes enter {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+  }
+
+  /* Only hides content once the observer is running, so a failed script never hides anything. */
+  .reveal-ready [data-reveal]:not(.is-revealed) {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+
+  .reveal-ready [data-reveal] {
+    transition: opacity 0.7s cubic-bezier(0.25, 1, 0.5, 1),
+      transform 0.7s cubic-bezier(0.25, 1, 0.5, 1);
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+
+  .reveal-ready [data-reveal-cells]:not(.is-revealed) .cell {
+    opacity: 0.15;
+    transform: scale(0.6);
+  }
+
+  .reveal-ready [data-reveal-cells] .cell {
+    transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.25, 1, 0.5, 1),
+      background-color 0.2s ease;
+    transition-delay: calc(var(--i, 0) * 28ms + 150ms);
   }
 }
