@@ -1,24 +1,25 @@
 'use client';
 
 import { type FormEvent, useId, useRef, useState } from 'react';
-import { emailJsConfig } from '@/lib/contact';
+import { sendContactMessage } from '@/app/actions/contact';
+import {
+  CONTACT_LIMITS,
+  type ContactErrors,
+  type ContactField,
+  validateContact,
+} from '@/lib/contact';
 import { ArrowRight } from '../icons';
 
-type Field = 'name' | 'email' | 'message';
-type Errors = Partial<Record<Field, string>>;
-type Status = 'idle' | 'sending' | 'sent' | 'error';
+type Field = ContactField;
+type Errors = ContactErrors;
+type Status = 'idle' | 'sending' | 'sent' | 'rate-limited' | 'busy' | 'error';
 
-const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
-
-function validate(values: Record<Field, string>): Errors {
-  const errors: Errors = {};
-  if (values.name.length < 2) errors.name = 'Please enter your name.';
-  if (!EMAIL_PATTERN.test(values.email))
-    errors.email = 'Please enter a valid email address so I can reply.';
-  if (values.message.length < 20)
-    errors.message = 'A little more detail helps — at least 20 characters.';
-  return errors;
-}
+const failureMessages: Partial<Record<Status, string>> = {
+  'rate-limited':
+    'Several messages were just sent from your network, so the form is paused for a few minutes.',
+  busy: 'The form is receiving more messages than usual and is paused for now.',
+  error: 'The message couldn’t be sent.',
+};
 
 const inputClass =
   'mt-2 block w-full border bg-bg px-3.5 py-3 text-[15px] text-fg placeholder:text-subtle transition-colors focus:border-accent-ink focus:outline-none focus:ring-1 focus:ring-accent-ink focus-visible:outline-none';
@@ -42,40 +43,42 @@ export default function ContactForm({
 
     const form = event.currentTarget;
     const data = new FormData(form);
-    // Honeypot: real visitors never see or fill this field.
-    if (String(data.get('company') ?? '').trim()) return;
-
     const values = {
       name: String(data.get('name') ?? '').trim(),
       email: String(data.get('email') ?? '').trim(),
       message: String(data.get('message') ?? '').trim(),
     };
-    const nextErrors = validate(values);
-    setErrors(nextErrors);
 
-    const firstInvalid = (Object.keys(nextErrors) as Field[])[0];
-    if (firstInvalid) {
+    const focusFirstInvalid = (found: Errors) => {
+      const first = (Object.keys(found) as Field[])[0];
+      if (!first) return false;
       form
-        .querySelector<HTMLElement>(`#${CSS.escape(fieldId(firstInvalid))}`)
+        .querySelector<HTMLElement>(`#${CSS.escape(fieldId(first))}`)
         ?.focus();
-      return;
-    }
+      return true;
+    };
+
+    const nextErrors = validateContact(values);
+    setErrors(nextErrors);
+    if (focusFirstInvalid(nextErrors)) return;
 
     setStatus('sending');
     try {
-      const { default: emailjs } = await import('@emailjs/browser');
-      await emailjs.send(
-        emailJsConfig.serviceId,
-        emailJsConfig.templateId,
-        {
-          user_name: values.name,
-          user_email: values.email,
-          user_message: values.message,
-        },
-        emailJsConfig.publicKey
-      );
-      setStatus('sent');
-      formRef.current?.reset();
+      // The server validates again and sends the email through Resend.
+      const result = await sendContactMessage({
+        ...values,
+        hp_confirm: String(data.get('hp_confirm') ?? ''),
+      });
+      if (result.ok) {
+        setStatus('sent');
+        formRef.current?.reset();
+      } else if (result.reason === 'invalid') {
+        setStatus('idle');
+        setErrors(result.errors);
+        focusFirstInvalid(result.errors);
+      } else {
+        setStatus(result.reason === 'unavailable' ? 'error' : result.reason);
+      }
     } catch {
       setStatus('error');
     }
@@ -110,6 +113,7 @@ export default function ContactForm({
             type="text"
             autoComplete="name"
             required
+            maxLength={CONTACT_LIMITS.name}
             aria-invalid={Boolean(errors.name)}
             aria-describedby={describedBy('name')}
             className={`${inputClass} ${
@@ -133,6 +137,7 @@ export default function ContactForm({
             autoComplete="email"
             inputMode="email"
             required
+            maxLength={CONTACT_LIMITS.email}
             aria-invalid={Boolean(errors.email)}
             aria-describedby={describedBy('email')}
             className={`${inputClass} ${
@@ -154,6 +159,7 @@ export default function ContactForm({
             name="message"
             rows={5}
             required
+            maxLength={CONTACT_LIMITS.message}
             aria-invalid={Boolean(errors.message)}
             aria-describedby={describedBy('message')}
             className={`${inputClass} resize-y ${
@@ -170,10 +176,12 @@ export default function ContactForm({
           aria-hidden="true"
           className="absolute -left-[9999px] h-px w-px overflow-hidden"
         >
-          <label htmlFor={`${id}-company`}>Company website</label>
+          {/* A name and label that browser autofill doesn't recognise, so
+              only bots fill this in. */}
+          <label htmlFor={`${id}-hp`}>Leave this field empty</label>
           <input
-            id={`${id}-company`}
-            name="company"
+            id={`${id}-hp`}
+            name="hp_confirm"
             type="text"
             tabIndex={-1}
             autoComplete="off"
@@ -198,9 +206,9 @@ export default function ContactForm({
           ) : null}
         </div>
       </div>
-      {status === 'error' ? (
+      {failureMessages[status] ? (
         <p role="alert" className="mt-4 border-l-2 border-danger pl-3 text-sm">
-          The message couldn&apos;t be sent. Please email me directly at{' '}
+          {failureMessages[status]} Please email me directly at{' '}
           <a href={`mailto:${fallbackEmail}`} className="link">
             {fallbackEmail}
           </a>

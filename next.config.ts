@@ -13,6 +13,9 @@ const securityHeaders = [
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
+  // The Docker build sets NEXT_OUTPUT=standalone to get a self-contained
+  // server in .next/standalone. Vercel and `yarn start` keep the default.
+  output: process.env.NEXT_OUTPUT === 'standalone' ? 'standalone' : undefined,
   async headers() {
     return [{ source: '/:path*', headers: securityHeaders }];
   },

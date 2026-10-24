@@ -5,8 +5,8 @@ Personal site of Shahriar Mahmud, Senior Software Engineer. Live at
 
 Built with Next.js 16 (App Router, server components by default), React 19,
 TypeScript (strict) and Tailwind CSS. No UI or animation libraries; the only
-runtime dependency beyond Next/React is `@emailjs/browser`, loaded on demand
-when the contact form is submitted.
+runtime dependency beyond Next/React is `resend`, used server-side by the
+contact form.
 
 ## Editing content
 
@@ -46,14 +46,28 @@ yarn dev           # http://localhost:3000
 
 ## Environment variables
 
-See `.env.example`. All are optional.
+Copy `.env.example` to `.env.local` (git-ignored) for local development. In
+production, set the same keys in Vercel → Project → Settings → Environment
+Variables.
+
+**Runtime, server-only**
+
+- `RESEND_API_KEY` — secret key for [Resend](https://resend.com). The contact
+  form posts to a Server Action (`app/actions/contact.ts`) that validates input,
+  rate-limits (5 per client and 20 site-wide per 10 minutes, 50 per day —
+  in memory, per server instance) and sends the email; replying to it answers
+  the visitor. Without the key, visitors are told
+  the message couldn't be sent and are shown the email address — the form
+  never fakes success. Never prefix this key with `NEXT_PUBLIC_`.
+- `CONTACT_TO_EMAIL` — optional; defaults to the email in `content/profile.ts`.
+- `CONTACT_FROM_EMAIL` — optional; defaults to Resend's test sender
+  `onboarding@resend.dev`, which only delivers to your own Resend account
+  email. Verify a domain in Resend to send from your own address.
+
+**Build-time (baked into the pages)**
 
 - `NEXT_PUBLIC_SITE_URL` — canonical origin. Set this when a custom domain is
   added; canonical links, sitemap, robots and social cards all follow it.
-- `NEXT_PUBLIC_EMAILJS_SERVICE_ID`, `NEXT_PUBLIC_EMAILJS_TEMPLATE_ID`,
-  `NEXT_PUBLIC_EMAILJS_PUBLIC_KEY` — contact form. The template receives
-  `user_name`, `user_email` and `user_message`. If any are missing, the form is
-  replaced by a direct email link (it never fakes a successful send).
 - `GOOGLE_SITE_VERIFICATION` — Search Console HTML-tag token.
 
 ## Deploying (Vercel)
@@ -61,6 +75,20 @@ See `.env.example`. All are optional.
 The repository is connected to Vercel; pushing to `master` deploys production
 and any other branch gets a preview URL. No extra build settings are needed —
 Vercel detects Next.js and Yarn from `yarn.lock`.
+
+## Docker (self-hosting)
+
+```bash
+docker compose up --build -d   # http://localhost:8080
+```
+
+A multi-stage `Dockerfile` builds an image from Next.js standalone output
+(~77 MB compressed) that runs as a non-root user with a health check. Secrets
+such as `RESEND_API_KEY` are injected at runtime from `.env.local` via
+Compose's `env_file`; no `.env*` file enters the image. Standalone output is
+only enabled inside the Docker build, so Vercel is unaffected.
+
+Step-by-step guide (Bangla + English): [docs/DOCKER.md](docs/DOCKER.md).
 
 ## Structure
 

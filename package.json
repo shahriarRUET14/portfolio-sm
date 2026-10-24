@@ -17,10 +17,10 @@
     "format": "prettier --write ."
   },
   "dependencies": {
-    "@emailjs/browser": "^3.9.1",
     "next": "16.4.2",
     "react": "19.2.9",
-    "react-dom": "19.2.9"
+    "react-dom": "19.2.9",
+    "resend": "6.32.1"
   },
   "devDependencies": {
     "@types/node": "^24.0.0",

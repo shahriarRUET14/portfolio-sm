@@ -1,0 +1,27 @@
+# Run with:  docker compose up --build
+# Then open: http://localhost:8080
+#
+# Two kinds of configuration:
+# - Runtime secrets (RESEND_API_KEY, CONTACT_*) come from .env.local through
+#   env_file below. They reach the running server but never the image.
+# - Optional build-time values (NEXT_PUBLIC_SITE_URL, GOOGLE_SITE_VERIFICATION)
+#   are read from your shell, or pass the file explicitly:
+#     docker compose --env-file .env.local up --build
+
+services:
+  web:
+    build:
+      context: .
+      args:
+        NEXT_PUBLIC_SITE_URL: ${NEXT_PUBLIC_SITE_URL:-}
+        GOOGLE_SITE_VERIFICATION: ${GOOGLE_SITE_VERIFICATION:-}
+    image: shahriar-portfolio:local
+    container_name: shahriar-portfolio
+    env_file:
+      - path: .env.local
+        required: false
+    # A tiny init process forwards stop signals and reaps child processes.
+    init: true
+    ports:
+      - '8080:3000' # host:container
+    restart: unless-stopped

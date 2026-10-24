@@ -1,0 +1,41 @@
+# Everything listed here stays out of the Docker build context.
+# Smaller context = faster builds, and secrets never reach an image layer.
+
+# Dependencies and build output are recreated inside the image
+node_modules
+.next
+out
+build
+*.tsbuildinfo
+next-env.d.ts
+
+# Environment files never enter the image. Secrets (RESEND_API_KEY, CONTACT_*)
+# are passed when the container starts (env_file / --env-file); only public
+# build-time values (NEXT_PUBLIC_SITE_URL, GOOGLE_SITE_VERIFICATION) are build args.
+.env
+.env.*
+!.env.example
+
+# Version control, editors and OS files
+.git
+.gitignore
+.gitattributes
+.idea
+.vscode
+.DS_Store
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Docker files themselves and docs are not needed to build the app
+Dockerfile
+.dockerignore
+compose.yaml
+README.md
+docs
+
+# Personal files at the repository root (public/resume.pdf is still included)
+*.pdf
+Untitled

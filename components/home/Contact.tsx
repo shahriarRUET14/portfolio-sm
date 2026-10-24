@@ -1,6 +1,5 @@
 import type { ReactNode } from 'react';
 import { profile } from '@/content/profile';
-import { contactFormEnabled } from '@/lib/contact';
 import ContactForm from '../contact/ContactForm';
 import CopyEmail from '../contact/CopyEmail';
 import LocalTime from '../contact/LocalTime';
@@ -116,22 +115,7 @@ export default function Contact() {
         </div>
 
         <div className="lg:col-span-6 lg:col-start-7 lg:pt-14">
-          {contactFormEnabled ? (
-            <ContactForm fallbackEmail={profile.email} />
-          ) : (
-            <div className="border border-line bg-surface p-6 sm:p-8">
-              <h3 className="font-display text-xl font-semibold">
-                The quickest route is email
-              </h3>
-              <p className="mt-2 text-muted">
-                Tell me a little about the role, product or problem, and
-                I&apos;ll reply by email.
-              </p>
-              <a href={`mailto:${profile.email}`} className="btn-primary mt-6">
-                Email {profile.givenName}
-              </a>
-            </div>
-          )}
+          <ContactForm fallbackEmail={profile.email} />
         </div>
       </div>
     </section>
