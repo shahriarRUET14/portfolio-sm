@@ -3,23 +3,8 @@
 @tailwind utilities;
 
 @layer base {
+  /* Light is the default; dark applies only when chosen with the toggle. */
   :root,
-  :root[data-theme='dark'] {
-    --bg: 11 12 11;
-    --surface: 18 20 18;
-    --surface-2: 26 28 26;
-    --line: 40 43 40;
-    --line-strong: 64 68 63;
-    --fg: 237 235 230;
-    --muted: 160 163 157;
-    --subtle: 132 135 129;
-    --accent: 198 242 78;
-    --accent-ink: 198 242 78;
-    --accent-fg: 11 12 11;
-    --danger: 255 128 112;
-    color-scheme: dark;
-  }
-
   :root[data-theme='light'] {
     --bg: 244 242 236;
     --surface: 250 249 245;
@@ -34,6 +19,22 @@
     --accent-fg: 11 12 11;
     --danger: 176 32 24;
     color-scheme: light;
+  }
+
+  :root[data-theme='dark'] {
+    --bg: 11 12 11;
+    --surface: 18 20 18;
+    --surface-2: 26 28 26;
+    --line: 40 43 40;
+    --line-strong: 64 68 63;
+    --fg: 237 235 230;
+    --muted: 160 163 157;
+    --subtle: 132 135 129;
+    --accent: 198 242 78;
+    --accent-ink: 198 242 78;
+    --accent-fg: 11 12 11;
+    --danger: 255 128 112;
+    color-scheme: dark;
   }
 
   html {

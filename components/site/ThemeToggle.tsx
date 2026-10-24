@@ -13,9 +13,9 @@ function subscribe(listener: () => void) {
 }
 
 const getTheme = (): Theme =>
-  document.documentElement.dataset.theme === 'light' ? 'light' : 'dark';
+  document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light';
 
-const getServerTheme = (): Theme => 'dark';
+const getServerTheme = (): Theme => 'light';
 
 function setTheme(theme: Theme) {
   document.documentElement.dataset.theme = theme;

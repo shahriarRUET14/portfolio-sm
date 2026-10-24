@@ -74,18 +74,18 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: '#0b0c0b',
-  colorScheme: 'dark light',
+  themeColor: '#f4f2ec',
+  colorScheme: 'light dark',
 };
 
 // Runs before first paint so the saved theme never flashes.
-const themeScript = `(function(){try{var t=localStorage.getItem('theme');document.documentElement.dataset.theme=t==='light'?'light':'dark'}catch(e){}})()`;
+const themeScript = `(function(){try{var t=localStorage.getItem('theme');document.documentElement.dataset.theme=t==='dark'?'dark':'light'}catch(e){}})()`;
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html
       lang="en"
-      data-theme="dark"
+      data-theme="light"
       data-scroll-behavior="smooth"
       className={`${display.variable} ${sans.variable} ${mono.variable}`}
       suppressHydrationWarning
